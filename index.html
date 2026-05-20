@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TennisPro - Train Smarter Play Better.</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner">
+            <i class="fas fa-tennis-ball"></i>
+            <p>Loading TennisPro...</p>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-tennis-ball"></i>
+                <span>TennisPro</span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#classes" class="nav-link">Classes</a></li>
+                <li><a href="#coaches" class="nav-link">Coaches</a></li>
+                <li><a href="#membership" class="nav-link">Membership</a></li>
+                <li><a href="#community" class="nav-link">Community</a></li>
+                <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-auth">
+                <button class="btn-login" onclick="showLoginModal()">Login</button>
+                <button class="btn-signup" onclick="showSignupModal()">Sign Up</button>
+                <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Train Smarter Play Better.</h1>
+                <p class="hero-subtitle">Join tennis classes, find coaches, and connect with tennis communities in one platform.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary btn-large" onclick="scrollToBooking()">
+                        <i class="fas fa-calendar-check"></i> Book Class
+                    </button>
+                    <button class="btn-secondary btn-large" onclick="scrollToCoaches()">
+                        <i class="fas fa-users"></i> Explore Coaches
+                    </button>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <h3>10K+</h3>
+                    <p>Active Members</p>
+                </div>
+                <div class="stat-card">
+                    <h3>500+</h3>
+                    <p>Classes Weekly</p>
+                </div>
+                <div class="stat-card">
+                    <h3>4.9</h3>
+                    <p>Average Rating</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-bg">
+            <div class="tennis-ball-float"></div>
+            <div class="court-lines"></div>
+        </div>
+    </section>
+
+    <!-- Today's Schedule -->
+    <section class="schedule-section">
+        <div class="container">
+            <h2 class="section-title">Today's Schedule</h2>
+            <div class="schedule-grid" id="scheduleGrid">
+                <!-- Dynamic schedule cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="classes" class="booking-section">
+        <div class="container">
+            <h2 class="section-title">Book Your Class</h2>
+            <div class="booking-form-container">
+                <form class="booking-form" id="bookingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" id="bookingDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Time</label>
+                            <select id="bookingTime" required>
+                                <option value="">Select Time</option>
+                                <option value="08:00">08:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="16:00">04:00 PM</option>
+                                <option value="18:00">06:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Level</label>
+                            <select id="bookingLevel" required>
+                                <option value="">Select Level</option>
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Coach</label>
+                            <select id="bookingCoach" required>
+                                <option value="">Select Coach</option>
+                                <option value="coach1">Ricky Hartono</option>
+                                <option value="coach2">Sari Wijaya</option>
+                                <option value="coach3">Budi Santoso</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Location</label>
+                            <select id="bookingLocation" required>
+                                <option value="">Select Location</option>
+                                <option value="gor1">GOR Senayan</option>
+                                <option value="gor2">GOR Gelora Bung Karno</option>
+                                <option value="gor3">GOR Rawamangun</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="slots-label">Available Slots: <span id="availableSlots">8/10</span></label>
+                            <div class="price-display">
+                                <span class="price">Rp 150.000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full" id="bookBtn">
+                        Book Now
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coaches Section -->
+    <section id="coaches" class="coaches-section">
+        <div class="container">
+            <h2 class="section-title">Popular Coaches</h2>
+            <div class="coaches-grid" id="coachesGrid">
+                <!-- Dynamic coach cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <div class="container">
+            <h2 class="section-title">What Members Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-card active">
+                    <div class="testimonial-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face" alt="Member">
+                    </div>
+                    <p>"Platform terbaik untuk belajar tenis! Coach berkualitas dan booking mudah."</p>
+                    <h4>- Andi S.</h4>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <!-- More testimonials -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section id="membership" class="membership-section">
+        <div class="container">
+            <h2 class="section-title">Choose Your Membership</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Basic</h3>
+                        <div class="price">Rp 99.000<span>/month</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ 4 Classes/Month</li>
+                        <li>✓ Basic Booking</li>
+                        <li>✗ Priority Booking</li>
+                    </ul>
+                    <button class="btn-primary">Get Started</button>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Premium</h3>
+                        <div class="price">Rp 199.000<span>/month</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ 10 Classes/Month</li>
+                        <li>✓ Priority Booking</li>
+                        <li>✓ 10% Discount</li>
+                    </ul>
+                    <button class="btn-primary">Get Premium</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Elite</h3>
+                        <div class="price">Rp 399.000<span>/month</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ Unlimited Classes</li>
+                        <li>✓ Private Coach</li>
+                        <li>✓ Exclusive Events</li>
+                    </ul>
+                    <button class="btn-primary">Go Elite</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="community-section">
+        <div class="container">
+            <h2 class="section-title">Find Your Tennis Buddy</h2>
+            <div class="community-container">
+                <div class="community-search">
+                    <input type="text" placeholder="Search by location or level...">
+                    <select>
+                        <option>Any Level</option>
+                        <option>Beginner</option>
+                        <option>Intermediate</option>
+                        <option>Advanced</option>
+                    </select>
+                    <button class="btn-primary">Search Partner</button>
+                </div>
+                <div class="buddies-grid" id="buddiesGrid">
+                    <!-- Dynamic buddy cards -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="dashboard-section">
+        <div class="container">
+            <h2 class="section-title">Member Dashboard</h2>
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Upcoming Classes</h3>
+                    <div class="upcoming-class">
+                        <div class="class-info">
+                            <h4>Beginner Class</h4>
+                            <p>Tomorrow 10:00 AM - GOR Senayan</p>
+                        </div>
+                        <button class="btn-small">View Details</button>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Reward Points</h3>
+                    <div class="points-display">
+                        <div class="points">1,250</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 62%"></div>
+                        </div>
+                        <p>62% to next reward</p>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Membership</h3>
+                    <div class="membership-status premium">
+                        <i class="fas fa-crown"></i>
+                        <span>Premium Member</span>
+                        <p>Expires in 23 days</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+62 812-3456-7890</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>hello@tennispro.id</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Jl. Tennis No. 123, Jakarta</p>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Your Email">
+                    <textarea placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-tennis-ball"></i>
+                    <span>TennisPro</span>
+                    <p>Train Smarter. Play Better.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#classes">Classes</a>
+                    <a href="#coaches">Coaches</a>
+                    <a href="#membership">Membership</a>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-facebook"></i>
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TennisPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('bookingModal')">&times;</span>
+            <div id="bookingModalContent"></div>
+        </div>
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h3>Login</h3>
+            <form class="auth-form">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h3>Sign Up</h3>
+            <form class="auth-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn-primary">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
